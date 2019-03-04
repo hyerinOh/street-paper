@@ -1,395 +1,52 @@
-
-body {
+body{
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+#root{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 640px;
+  height: 100vh;
+  margin: 0;
+  background-color: #ffffff;
+  // background-image: linear-gradient(#757F9A, #D7DDE8);
+}
+.title{
   text-align: center;
-  margin: 20px;
-  height: 100%;
-  
+  font-size: 40px;
 }
-
-a, a:visited {
-  text-decoration: none;
+.main_page_wrapper{
+  text-align: center;
 }
-.themeStyle{
-  height: 100vh;
+.nickname_wrapper{
   display: flex;
-  flex: wrap;
-  justify-content: center;
-  padding: 150px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
-.wrapper{
-  height: 100vh;
-  overflow-y: scroll;
-}
-.postLists{
- 
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.content{
-  font-family: 'Nanum Gothic','Nunito', serif;
-  display: block;
-  padding: 40px;
-}
-.tagWrap{
-  display: flex;
-  justify-content: space-around; 
-}
-.contentTitle{
-  text-align: left;
-}
-.contentBy{
-  text-align: left;
-}
-.contentCreatedAt{
-  text-align: left;
-}
-.ContentTag{
-  
-}
-.contentComments{
-  text-align: left;
-}
-.listStyle{
-  display: flex;
-}
-.postImage{
-  display: flex;
+.nickname_box{
+  text-indent: 10px;
   width: 250px;
-  height: 350px;
-}
-.linkedImage{
-  width: 20%;
-}
-.fa-sort-amount-down{
-  padding: 10px;
-}
-.prev{
-  width: 50px;
   height: 30px;
+  border: solid 1px black;
+  margin-bottom: 30px;
+}
+.startBtn{
   margin: 20px;
-}
-.next{
-  width: 50px;
-  height: 30px;
-}
-.adminPostList{
-  margin: 10px;
-  padding: 10px;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
+  padding: 0;
+  background-color: black;
+  color: white;
+  text-align: center;
   align-items: center;
-  font-size: 18px;
-}
-.adminPostList:hover{
-  border: solid 1px white;
-  box-shadow: 5px 10px 8px #888888;
-}
-.defaultTheme {
-  background-color: rgb(201, 211, 223);
-  color: rgb(228, 233, 236);
-  .homeBtn{
-    color: rgb(228, 233, 236);
-    margin-left: 20px;
-    text-decoration: none;
-    font-family: 'Abril Fatface', cursive;
-    font-size: 34px;
-  }
-  .homeBtn:hover{
-    color: rgb(158, 174, 197); 
-  }
-  .postBtn{
-    color: rgb(228, 233, 236);
-    line-height: 2.4;
-    text-decoration: none;
-    margin-right: 20px;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-  }
-  .postBtn:hover{
-    color: rgb(158, 174, 197); 
-    border-bottom: solid 2px rgb(158, 174, 197);
-  }
-  .themeBtn{
-    color: rgb(228, 233, 236);
-    margin-top: 20px;
-    margin-right: 20px;
-    text-decoration: none;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-  }
-  .themeBtn:hover{
-    color: rgb(158, 174, 197);
-    border-bottom: solid 2px rgb(158, 174, 197);
-  }
-  .contentTitle{
-    text-align: left;
-    color: rgb(121, 135, 161);
-    font-size: 18px;
-    border-bottom: solid 5px rgb(244, 210, 208);
-  }
-  .contentBy{
-    color: rgb(121, 135, 161);
-    text-align: left;
-  }
-  .contentCreatedAt{
-    color: rgb(121, 135, 161);
-    text-align: left;
-  }
-  .ContentTag{
-    color: rgb(121, 135, 161);
-  }
-  .contentComments{
-    color: rgb(121, 135, 161);
-    text-align: left;
-  }
-  .linkedTitle{
-    color: rgb(121, 135, 161);
-  }
-  .linkedBy{
-    color: rgb(121, 135, 161);
-  }
-  .linkedAt{
-    color: rgb(121, 135, 161);
-  }
-  .tagDiv{
-    display: flex;
-    justify-content: center;
-    .linkedTag{
-      color: rgb(121, 135, 161); 
-    }
-  }
-  .commentDiv{
-    color: rgb(121, 135, 161);
-    display: flex;
-    justify-content: space-around;
-  }
-}
-.greenTheme{
-  background-color: rgb(181, 204, 207);
-  color: rgb(224, 239, 240);
-  .homeBtn{
-    color: rgb(224, 239, 240);
-    margin-left: 20px;
-    text-decoration: none;
-    font-family: 'Abril Fatface', cursive;
-    font-size: 34px;
-  }
-  .homeBtn:hover{
-    color: rgb(119, 171, 174); 
-  }
-  .postBtn{
-    color: rgb(224, 239, 240);
-    line-height: 2.4;
-    text-decoration: none;
-    margin-right: 20px;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-  }
-  .postBtn:hover{
-    color: rgb(119, 171, 174); 
-    border-bottom: solid 2px rgb(119, 171, 174);
-  }
-  .themeBtn{
-    color: rgb(224, 239, 240);
-    margin-top: 20px;
-    margin-right: 20px;
-    text-decoration: none;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-  }
-  .themeBtn:hover{
-    color: rgb(119, 171, 174);
-    border-bottom: solid 2px rgb(119, 171, 174);
-  }
-  .contentTitle{
-    text-align: left;
-    color: rgb(57, 85, 92);
-    font-size: 18px;
-    border-bottom: solid 5px rgb(222, 218, 224);
-  }
-  .contentBy{
-    color: rgb(57, 85, 92);
-    text-align: left;
-  }
-  .contentCreatedAt{
-    color: rgb(57, 85, 92);
-    text-align: left;
-  }
-  .ContentTag{
-    color: rgb(57, 85, 92);
-  }
-  .contentComments{
-    color: rgb(57, 85, 92);
-    text-align: left;
-  }
-}
-.blueTheme{
-  background-color: rgb(197, 202, 219);
-  color: rgb(231, 235, 243);
-  .homeBtn{
-    color: rgb(231, 235, 243);
-    margin-left: 20px;
-    text-decoration: none;
-    font-family: 'Abril Fatface', cursive;
-    font-size: 34px;
-  }
-  .homeBtn:hover{
-    color: rgb(119, 159, 212); 
-  }
-  .postBtn{
-    color: rgb(231, 235, 243);
-    line-height: 2.4;
-    text-decoration: none;
-    margin-right: 20px;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-  }
-  .postBtn:hover{
-    color: rgb(119, 159, 212); 
-    border-bottom: solid 2px rgb(119, 159, 212);
-  }
-  .themeBtn{
-    color: rgb(231, 235, 243);
-    margin-top: 20px;
-    margin-right: 20px;
-    text-decoration: none;
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-  }
-  .themeBtn:hover{
-    color: rgb(119, 159, 212);
-    border-bottom: solid 2px rgb(119, 159, 212);
-  }
-  .contentTitle{
-    text-align: left;
-    color: rgb(120, 129, 161);
-    font-size: 18px;
-    border-bottom: solid 5px rgb(119, 159, 212);
-  }
-  .contentBy{
-    color: rgb(120, 129, 161);
-    text-align: left;
-  }
-  .contentCreatedAt{
-    color: rgb(120, 129, 161);
-    text-align: left;
-  }
-  .ContentTag{
-    color: rgb(120, 129, 161);
-  }
-  .contentComments{
-    color: rgb(120, 129, 161);
-    text-align: left;
-  }
-}
-.linkingbtn{
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid 5px white;
-}
-.defaultBtn{
-  margin-top: 20px;
-  font-size: 15px;
-  border-radius: 25px;
-  width: 70px;
-  height: 40px;
-}
-.secondBtn{
-  margin-top: 20px;
-  font-size: 15px;
-  border-radius: 25px;
-  width: 70px;
-  height: 40px;
-}
-.thirdBtn{
-  margin-top: 20px;
-  font-size: 15px;
-  border-radius: 25px;
-  width: 70px;
-  height: 40px;
-}
-
-.sortingBtn{
-  align-items: center;
-  height: 50px;
-  font-size: 25px;
-}
-.fa-sort-amount-up{
-  margin-right: 10px;
-}
-.fa-sort-amount-up:hover{
-  color: rgb(104, 103, 103);;
-}
-.fa-sort-amount-down{
-  margin-left: 10px;
-}
-.fa-sort-amount-down:hover{
-  color: rgb(104, 103, 103);
-}
-.tagList{
-  margin: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.mainImage{
-  width: 80%;
-  height: 600px;
-}
-.listWrap{
-  align-content: center;
-  width: 80%;
-}
-.pageBtn{
-  display: flex;
   justify-content: center;
-  align-items: center;
-  flex: wrap;
-}
-.next{
-  font-size: 13px;
-  margin-left: 20px;
-  border-radius: 25px;
-  color: rgb(104, 103, 103);
-}
-.next:disabled{
-  color: #dddddd;
-}
-.prev{
-  font-size: 13px;
-  color: rgb(104, 103, 103);
-  border: none;
-  border-radius: 25px;
-}
-.prev:disabled{
-  color: #dddddd;
-}
-.gray_pink_image{
-  margin-right: 20px;
-  width: 300px;
-  height: 400px;
-}
-.green_image{
-  margin-right: 20px;
-  width: 300px;
-  height: 400px;
-}
-.blue_image{
-  width: 300px;
-  height: 400px;
-}
-.deleteBtn{
-  color: #919191;
-  font-size: 15px;
-  width: 70px;
+  width: 100px;
   height: 40px;
-  border: none;
   border-radius: 25px;
 }
-.error{
-  width: 65%;
+.logo{
+  width: 130px;
+  height: 130px;
+  padding-bottom: 200px;
 }
