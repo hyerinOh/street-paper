@@ -7,35 +7,31 @@ import {
   Switch
 } from 'react-router-dom';
 import './App.less';
-import mainPage from './mainPage';
+import mapboxgl from 'mapbox-gl';
+import MainPage from './components/MainPage';
+import MapPage from './components/MapPage';
+
+console.log('this is HTTPS: ' + process.env.REACT_APP_HTTPS);
+mapboxgl.accessToken = 'pk.eyJ1IjoiaHllbmluaWlpIiwiYSI6ImNqcWtubmw2dTZvM2Q0MnVsNW54bmJ6aXkifQ.VTRzsYgEhe2BGUx35C3lgQ';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   themeType: 'defaultTheme'
-    // };
-
-    // this.chooseType = this.chooseType.bind(this);
   }
 
-  // chooseType(type) {
-  //   this.setState({
-  //     themeType: type
-  //   });
-  // }
-
   render() {
-    // const { themeType } = this.state;
-
     return (
       <Router>
         <Switch>
           <Route
             exact
             path="/"
-            component={mainPage}
+            component={MainPage}
+          />
+          <Route
+            exact
+            path="/map"
+            component={MapPage}
           />
         </Switch>
       </Router>
