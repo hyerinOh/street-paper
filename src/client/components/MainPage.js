@@ -16,6 +16,7 @@ export default class MainPage extends Component {
 
   handleSubmit(ev) {
     ev.preventDefault();
+
     if (this.nickNameRef.current.value.length <= 8) {
       this.setState({
         nickName: this.nickNameRef.current.value
@@ -24,7 +25,7 @@ export default class MainPage extends Component {
         this.props.history.push('/map');
       });
     } else {
-      alert('Write your nickName within 8 letters!');
+      alert('Write your nick name within 8 letters!');
       this.nickNameRef.current.value = '';
     }
   }

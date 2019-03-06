@@ -11,7 +11,6 @@ import mapboxgl from 'mapbox-gl';
 import MainPage from './components/MainPage';
 import MapPage from './components/MapPage';
 
-console.log('this is HTTPS: ' + process.env.REACT_APP_HTTPS);
 mapboxgl.accessToken = 'pk.eyJ1IjoiaHllbmluaWlpIiwiYSI6ImNqcWtubmw2dTZvM2Q0MnVsNW54bmJ6aXkifQ.VTRzsYgEhe2BGUx35C3lgQ';
 
 export default class App extends Component {
