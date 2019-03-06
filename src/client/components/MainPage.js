@@ -16,13 +16,17 @@ export default class MainPage extends Component {
 
   handleSubmit(ev) {
     ev.preventDefault();
-
-    this.setState({
-      nickName: this.nickNameRef.current.value
-    }, () => {
+    if (this.nickNameRef.current.value.length <= 8) {
+      this.setState({
+        nickName: this.nickNameRef.current.value
+      }, () => {
+        this.nickNameRef.current.value = '';
+        this.props.history.push('/map');
+      });
+    } else {
+      alert('Write your nickName within 8 letters!');
       this.nickNameRef.current.value = '';
-      this.props.history.push('/map');
-    });
+    }
   }
 
   render() {
