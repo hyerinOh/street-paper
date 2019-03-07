@@ -1,5 +1,5 @@
 const initialState = {
-  nickNames: ''
+  nickName: ''
 };
 
 export default function Reducer(state = initialState, action) {
@@ -7,7 +7,7 @@ export default function Reducer(state = initialState, action) {
 
   switch (action.type) {
     case 'setNickName':
-      copiedState.nickNames = action.userNickName;
+      copiedState.nickName = action.userNickName;
       return copiedState;
 
     default:

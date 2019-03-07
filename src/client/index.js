@@ -4,7 +4,7 @@ import './App.less';
 import logger from 'redux-logger';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './App';
+import App from './containers/App';
 import Reducer from './reducers/Reducer';
 
 process.env.REACT_APP_HTTPS = true;

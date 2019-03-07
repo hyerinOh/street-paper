@@ -6,18 +6,17 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
-import './App.less';
+import '../App.less';
 import mapboxgl from 'mapbox-gl';
-import MainPage from './components/MainPage';
-import MapPage from './components/MapPage';
+import MainPage from './MainPage';
+import MapPage from './MapPage';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaHllbmluaWlpIiwiYSI6ImNqcWtubmw2dTZvM2Q0MnVsNW54bmJ6aXkifQ.VTRzsYgEhe2BGUx35C3lgQ';
 
-export default class App extends Component {
-  constructor(props) {
+export default class AppForm extends Component {
+  constructor(props){
     super(props);
   }
-
   render() {
     return (
       <Router>
@@ -25,15 +24,16 @@ export default class App extends Component {
           <Route
             exact
             path="/"
-            component={MainPage}
+            render={props => <MainPage {...props} {...this.props} />}
           />
           <Route
             exact
             path="/map"
-            component={MapPage}
+            render={props => <MapPage {...props} {...this.props} />}
           />
         </Switch>
       </Router>
     );
   }
+  
 }

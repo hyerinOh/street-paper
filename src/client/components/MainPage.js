@@ -6,33 +6,34 @@ import logo from '../images/logo_1.png';
 export default class MainPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      nickName: ''
-    };
 
-    this.nickNameRef = React.createRef();
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleChange(ev) {
+    const { saveNickName } = this.props;
+
+    saveNickName(ev.target.value);
+  }
+
   handleSubmit(ev) {
+    const { nickName, history, saveNickName } = this.props;
+
     ev.preventDefault();
 
-    if (this.nickNameRef.current.value.length <= 8) {
-      this.setState({
-        nickName: this.nickNameRef.current.value
-      }, () => {
-        this.nickNameRef.current.value = '';
-        this.props.history.push('/map');
-      });
+    if (nickName.length > 0 && nickName.length <= 8) {
+      history.push('/map');
+    } else if (nickName.length === 0) {
+      alert('Write your nick name!');
     } else {
       alert('Write your nick name within 8 letters!');
-      this.nickNameRef.current.value = '';
+      saveNickName('');
     }
   }
 
   render() {
-    const { nickName } = this.state;
-    console.log(nickName);
+    const { nickName } = this.props;
     return (
       <div className="main_page">
         <div className="main_page_wrapper">
@@ -47,7 +48,8 @@ export default class MainPage extends Component {
               name="nickname"
               className="nickname_box"
               placeholder="Write your nickname!"
-              ref={this.nickNameRef}
+              value={nickName}
+              onChange={this.handleChange}
             />
             <button
               type="submit"
