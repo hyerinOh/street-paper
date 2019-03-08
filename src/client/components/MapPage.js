@@ -20,6 +20,12 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
+    // fetch('http://localhost:8080/papers')
+    // .then(res => res.json())
+    // .then((result) => {
+    //   console.log(result);
+    // });
+
     const { coordsArr } = this.state;
 
     navigator.geolocation.getCurrentPosition((position) => {

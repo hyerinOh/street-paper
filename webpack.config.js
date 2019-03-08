@@ -77,7 +77,7 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:8080'
+      '/papers': 'http://localhost:8081'
     }
   },
   plugins: [

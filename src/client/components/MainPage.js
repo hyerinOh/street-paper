@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Route, Link } from 'react-router-dom';
 import '../App.less';
 import logo from '../images/logo_1.png';
 
