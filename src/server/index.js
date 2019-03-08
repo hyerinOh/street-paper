@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const router = require('./routes/index.js');
 const Paper = require('./models/data.js');
 
 const app = express();
@@ -14,31 +13,31 @@ db.once('open', (() => {
   console.log(`connected to database at ${DB_URL}`);
 }));
 app.use(express.static('public'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('views', __dirname + '/components');
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
-// app.use('/', ( req, res ) => {
-//   console.log(123123)
-//   res.json({a:232})
-// });
-app.get('/papers', async (req, res) => {
-  console.log(11111)
+
+app.get('/papers', (req, res) => { // async
+  console.log('-----server----');
+  console.log('req', req.query);
   Paper.find( // try catch, await
     {
-      'loc': {
+      loc: {
         $near: {
           $geometry: {
-             type: "Point",  // spacce
-             coordinates: [ 25.087626 , 55.151134 ]
+            type: 'Point',
+            coordinates: [req.query.lon, req.query.lat]
           },
+          $maxDistance: 1000
         }
       }
     }
   )
-    .then((paper) => {
-      console.log(paper);
-      res.json(paper);
+    .then((papers) => {
+      console.log(papers);
+      papers.forEach((paper) => {
+        console.log(paper.loc);
+      });
+      res.json(papers);
     });
 });
 // catch 404 and forward to error handler

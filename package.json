@@ -13,6 +13,7 @@
   "author": "Hyerin Oh <hyerinoh1108@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "event-stream": "3.3.4",
     "express": "^4.16.3",

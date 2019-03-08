@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 
+const axios = require('axios');
+
 ReactMapGL.accessToken = 'pk.eyJ1IjoiaHllbmluaWlpIiwiYSI6ImNqcWtubmw2dTZvM2Q0MnVsNW54bmJ6aXkifQ.VTRzsYgEhe2BGUx35C3lgQ';
 
 export default class Map extends Component {
@@ -20,11 +22,6 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
-    // fetch('http://localhost:8080/papers')
-    // .then(res => res.json())
-    // .then((result) => {
-    //   console.log(result);
-    // });
 
     const { coordsArr } = this.state;
 
@@ -34,6 +31,14 @@ export default class Map extends Component {
       coordsObj.lat = position.coords.latitude;
       coordsObj.lon = position.coords.longitude;
       copiedCoordsArr.push(coordsObj);
+
+      axios.get(`http://localhost:8081/papers?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
+        .then((response) => {
+          console.log('client', response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
       this.setState((prevState) => {
         return {
