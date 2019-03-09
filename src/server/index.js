@@ -16,30 +16,27 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/papers', (req, res) => { // async
-  console.log('-----server----');
-  console.log('req', req.query);
-  Paper.find( // try catch, await
-    {
-      loc: {
-        $near: {
-          $geometry: {
-            type: 'Point',
-            coordinates: [req.query.lon, req.query.lat]
-          },
-          $maxDistance: 1000
+app.get('/papers', async (req, res, next) => {
+  try {
+    const orderedByShortDistance = await Paper.find(
+      {
+        loc: {
+          $near: {
+            $geometry: {
+              type: 'Point',
+              coordinates: [req.query.lon, req.query.lat]
+            },
+            $maxDistance: 1000
+          }
         }
       }
-    }
-  )
-    .then((papers) => {
-      console.log(papers);
-      papers.forEach((paper) => {
-        console.log(paper.loc);
-      });
-      res.json(papers);
-    });
+    );
+    res.json(orderedByShortDistance);
+  } catch (error) {
+    next(error);
+  }
 });
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
