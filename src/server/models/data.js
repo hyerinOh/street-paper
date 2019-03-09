@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
-const MemoSchema = new mongoose.Schema({
+const PaperSchema = new mongoose.Schema({
   nickname: { type: String },
+  createdAt: { type: Number }, // 나중에 Date로
   memo: { type: String },
-  date: { type: String },
-  currentLocation: { type: [String] }
+  loc: {
+    type: {
+      type: String
+    },
+    coordinates: [Number]
+  }
 });
 
-module.exports = mongoose.model('Memo', MemoSchema);
+module.exports = mongoose.model('Papers', PaperSchema);
