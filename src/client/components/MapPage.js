@@ -55,6 +55,34 @@ export default class Map extends Component {
     });
   }
 
+  createPaper(ev) {
+    ev.preventDefault();
+    axios.post('/papers/new', {
+      nickname: 'vaco',
+      createdAt: '2019-03-09T05:13:45.444Z',
+      memo: 'vanilla coding',
+      loc: {
+        type: 'Point',
+        coordinates: [127.022105, 37.503444]
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  displayLists(lon, lat) {
+    // console.log(this.state)
+    // console.log(id);
+    axios.get(`/papers/location?lat=${lat}&lon=${lon}`)
+      .then((response) => {
+        console.log('rrrrr', response)
+      })
+  }
+
   render() {
     const { viewport, currCoords, allPapers } = this.state;
     let markers = null;
@@ -64,12 +92,17 @@ export default class Map extends Component {
         papers.map((paper) => {
           return (
             <Marker
-              key={paper.id}
+              key={paper._id}
               latitude={paper.loc.coordinates[1]}
               longitude={paper.loc.coordinates[0]}
               anchor="bottom"
-              className="paperMarker"
-            />
+            >
+              <button
+                type="button"
+                className="paperMarker"
+                onClick={this.displayLists.bind(this, paper.loc.coordinates[0], paper.loc.coordinates[1])}
+              />
+            </Marker>
           );
         })
       ));
@@ -95,8 +128,12 @@ export default class Map extends Component {
                         latitude={coords.lat}
                         longitude={coords.lon}
                         anchor="bottom"
-                        className="currMarker"
                       >
+                        <button
+                          type="button"
+                          className="currMarker"
+                          onClick={this.createPaper.bind(this)}
+                        />
                         <span className="beacon" />
                       </Marker>
                     );

@@ -16,6 +16,40 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/papers/location', async (req, res, next) => {
+  console.log(req.query)
+  try {
+    const getPapersById = await Paper.find(
+      {
+        loc: {
+          type: 'Point',
+          coordinates: [Number(req.query.lon), Number(req.query.lat)]
+        }
+      }
+    );
+    console.log(getPapersById);
+    res.json(getPapersById);
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post('/papers/new', (req, res) => {
+  const paperList = req.body;
+  const paper = new Paper(paperList);
+  console.log('req', paperList);
+  paper.save((err) => {
+    if (err) {
+      console.log(err);
+      res.json({ result: 0 });
+      res.status(400);
+      return;
+    }
+    res.json({ result: 1 });
+    res.status(200);
+  });
+});
+
 app.get('/papers', async (req, res, next) => {
   try {
     const orderedByShortDistance = await Paper.find(
@@ -30,7 +64,7 @@ app.get('/papers', async (req, res, next) => {
           }
         }
       }
-    );
+    ).select({ _id: 1, loc: 1 });
     res.json(orderedByShortDistance);
   } catch (error) {
     next(error);
