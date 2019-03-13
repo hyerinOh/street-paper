@@ -1,14 +1,75 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-// const Memo = require('./');
+const Paper = require('../models/data');
 
 const router = express.Router();
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// router.get('/papers', (req, res) => {
-//   console.log(Memo.find({}))
-//   res.render('MapPage', { name: 'hyerin' });
+// router.get('/papers/location', async (req, res, next) => {
+//   try {
+//     const PapersByLocation = await Paper.find(
+//       {
+//         loc:
+//         {
+//           $near:
+//           {
+//             $geometry: {
+//               type: 'Point',
+//               coordinates: [Number(req.query.lon), Number(req.query.lat)]
+//             },
+//             $maxDistance: 0
+//           }
+//         }
+//       }
+//     );
+//     res.json(PapersByLocation);
+//   } catch (error) {
+//     next(error);
+//   }
 // });
+
+router.post('/papers/new', async (req, res, next) => {
+  try {
+    const paperList = {
+      nickname: req.body.nickname,
+      memo: req.body.memo,
+      loc: {
+        type: 'Point',
+        coordinates: [req.body.lon, req.body.lat]
+      },
+      createdAt: new Date().toISOString()
+    };
+
+    const paper = new Paper(paperList);
+    try {
+      const savePapers = await paper.save();
+    } catch(err) {
+      console.log(err);
+    }
+    res.status(200).json({ message: 'success' });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/papers', async (req, res, next) => {
+  try {
+    console.log(1111);
+    const orderedByShortDistance = await Paper.find(
+      {
+        loc: {
+          $near: {
+            $geometry: {
+              type: 'Point',
+              coordinates: [127.022105, 37.503444]
+            },
+            $maxDistance: 1000
+          }
+        }
+      }
+    );
+    res.json(orderedByShortDistance);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;

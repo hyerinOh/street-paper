@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.less';
-import logo from '../images/logo_1.png';
+import logo from '../images/logo.svg';
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -34,32 +34,36 @@ export default class MainPage extends Component {
   render() {
     const { nickName } = this.props;
     return (
+      <div className="main_Wrap">
       <div className="main_page">
         <div className="main_page_wrapper">
           <img
             src={logo}
             className="logo"
             alt="mainLogo"
+            style={{ width: '250px' }}
           />
           <div className="nickname_wrapper">
-            <input
-              type="text"
-              name="nickname"
-              className="nickname_box"
-              placeholder="Write your nickname!"
-              value={nickName}
-              onChange={this.handleChange}
-            />
+            <div className="nickname_box_wrap">
+              <input
+                type="text"
+                name="nickname"
+                className="nickname_box"
+                placeholder="Write your nickname!"
+                value={nickName}
+                onChange={this.handleChange}
+              />
+              <span />
+            </div>
             <button
               type="submit"
               value="Submit"
               className="startBtn"
               onClick={this.handleSubmit}
-            >
-            START!
-            </button>
+            />
           </div>
         </div>
+      </div>
       </div>
     );
   }
