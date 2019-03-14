@@ -41,6 +41,7 @@ router.post('/papers/new', async (req, res, next) => {
     const paper = new Paper(paperList);
     try {
       const savePapers = await paper.save();
+      console.log(savePapers);
     } catch(err) {
       console.log(err);
     }
@@ -51,6 +52,7 @@ router.post('/papers/new', async (req, res, next) => {
 });
 
 router.get('/papers', async (req, res, next) => {
+  console.log(req.query)
   try {
     console.log(1111);
     const orderedByShortDistance = await Paper.find(
@@ -59,7 +61,7 @@ router.get('/papers', async (req, res, next) => {
           $near: {
             $geometry: {
               type: 'Point',
-              coordinates: [127.022105, 37.503444]
+              coordinates: [req.query.lon, req.query.lat]
             },
             $maxDistance: 1000
           }

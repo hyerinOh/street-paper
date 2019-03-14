@@ -29,6 +29,8 @@ export default class Dashboard extends Component {
     })
       .then((response) => {
         console.log('rrrrrrrr', response);
+        alert('save!');
+        this.props.handleClose();
       })
       .catch((error) => {
         console.log(error);
