@@ -1,4 +1,4 @@
-const SET_NICK_NAME = 'SET_NICK_NAME';
+export const SET_NICK_NAME = 'SET_NICK_NAME';
 const LOADING = 'LOADING';
 
 export const Action = (nickName) => {
