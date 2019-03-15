@@ -248,6 +248,7 @@ body{
 }
 
 .modal-main {
+  border-radius: 30px;
   position:fixed;
   padding: 30px;
   background: #181818;
@@ -284,15 +285,15 @@ body{
   align-items: center;
 }
 .saveBtn{
-  border-radius: 25px;
+  border-radius: 50%;
   text-align: center;
   border: solid 1px #ffffff;
   background: transparent;
   color: #ffffff;
   font-size: 25px;
   position: absolute;
-  width: 400px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   bottom: 40px;
 }
 .nickname-input{
@@ -302,9 +303,10 @@ body{
   text-indent: 10px;
 }
 .memo-form{
-  font-size: 25px;
-  width: 80%;
-  height: 30px;
+  border-radius: 25px;
+  font-size: 30px;
+  width: 100%;
+  height: 50px;
   text-indent: 10px;
 }
 .list-title{
@@ -313,10 +315,79 @@ body{
   color: #ffffff;
 }
 .nickname-item{
+  text-align: right;
   color: #7c96f2;
   font-size: 40px;
   font-style: italic;
 }
 .memo-item{
   font-size: 25px;
+}
+
+#loader {
+  animation: spin 1.2s ease-in-out infinite;
+  border: 3px solid transparent;
+  border-top-color: #537d8b;
+  border-radius: 100%;
+  filter: drop-shadow(0 0 10px blue);
+  height: 300px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  z-index: 100;
+  margin: -150px 0 0 -150px;
+}
+
+.load-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  overflow: hidden;
+
+  &:before {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    opacity: .9;
+  }
+  
+}
+#loader div {
+  animation: spin 1s ease-in-out infinite;
+  border: 3px solid transparent;
+  border-radius: 100%;
+  bottom: -1px;
+  left: -1px;
+  position: absolute;
+  right: -1px;
+  top: -1px;
+}
+#loader div:first-child {
+  border-top-color: #a74040;
+  transform: rotate(120deg);
+}
+#loader div:last-child {
+  animation-duration: 2s;
+  border-top-color: #40a744;
+  transform: rotate(240deg);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    box-shadow: 0 -2px 4px rgba(255, 255, 255, 0.2);
+    opacity: .7;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

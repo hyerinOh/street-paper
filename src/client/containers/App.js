@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import '../App.less';
 import { connect } from 'react-redux';
 import { BrowserRouter as Route, Link } from 'react-router-dom';
-import Action from '../actions/action';
+import { Action, LoadingAction } from '../actions/action';
 import AppForm from '../components/AppForm';
 
-// stateless?
 class App extends Component {
   render() {
     return <AppForm {...this.props} />
@@ -14,7 +13,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    nickName: state.nickName
+    nickName: state.nickName,
+    isLoading: state.isLoading
   };
 };
 
@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveNickName: (nickName) => {
       dispatch(Action(nickName));
+    },
+    onLoadData: (loadingType) => {
+      dispatch(LoadingAction(loadingType));
     }
   };
 };

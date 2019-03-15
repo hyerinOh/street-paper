@@ -1,8 +1,16 @@
-const setNickname = 'setNickName';
+const SET_NICK_NAME = 'SET_NICK_NAME';
+const LOADING = 'LOADING';
 
-export default function Action(nickName) {
+export const Action = (nickName) => {
   return {
-    type: setNickname,
+    type: SET_NICK_NAME,
     userNickName: nickName
   };
-}
+};
+
+export const LoadingAction = (loadingType) => {
+  return {
+    type: LOADING,
+    loadingType
+  };
+};

@@ -3,12 +3,14 @@ import ReactMapGL, { Marker } from 'react-map-gl';
 import axios from 'axios';
 import CreateModal from './CreateModal';
 import DisplayListsModal from './DisplayListsModal';
+import Loading from './Loading';
 
 ReactMapGL.accessToken = 'pk.eyJ1IjoiaHllbmluaWlpIiwiYSI6ImNqcWtubmw2dTZvM2Q0MnVsNW54bmJ6aXkifQ.VTRzsYgEhe2BGUx35C3lgQ';
 
 export default class Map extends Component {
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       viewport: {
         width: 640,
@@ -28,10 +30,14 @@ export default class Map extends Component {
 
   componentDidMount() {
     const { currCoords, allPapers } = this.state;
-    
+    const { onLoadData } = this.props;
+    // 로딩
+    onLoadData(true);
+
     new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition((position) => {
         resolve(position);
+        // 로딩 끝
       });
     }).then((positionData) => {
       if (positionData) {
@@ -45,6 +51,7 @@ export default class Map extends Component {
         axios.get(`/papers?lat=${positionData.coords.latitude}&lon=${positionData.coords.longitude}`)
           .then((response) => {
             copiedPapers.push(response);
+            onLoadData(false);
             this.setState((prevState) => {
               return {
                 ...prevState,
@@ -126,6 +133,7 @@ export default class Map extends Component {
   render() {
     const { viewport, currCoords, allPapers } = this.state;
     let markers = null;
+
     if (allPapers.length) {
       markers = allPapers[0].data.map((paper) => {
         const paperLat = paper.loc.coordinates[1];
@@ -148,8 +156,15 @@ export default class Map extends Component {
         );
       });
     }
+    console.log(this.props.isLoading);
+
     return (
       <div>
+        {
+          this.props.isLoading
+          ? <Loading />
+          : null
+        }
         {
           <div>
             <ReactMapGL

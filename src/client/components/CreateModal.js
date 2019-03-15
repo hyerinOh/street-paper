@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
   }
 
   onSubmit(ev) {
-    ev.preventDefault();
+    // ev.preventDefault();
     console.log(this.props)
     axios.post('/papers/new', {
       nickname: this.props.nickName,
@@ -37,11 +37,11 @@ export default class Dashboard extends Component {
       });
   }
 
-  validateLength(ev) {
-    if (ev.target.value.length > 10) {
-      alert('Write memo within 10 letters!');
-    }
-  }
+  // validateLength(ev) {
+  //   if (ev.target.value.length > 10) {
+  //     alert('Write memo within 10 letters!');
+  //   }
+  // }
 
   render() {
     return (
@@ -57,14 +57,14 @@ export default class Dashboard extends Component {
             </button>
 
             <div className="nickname-form">
-              <p className="nickname-item"> nick name </p>
-              <input
+              <p>Make Your Paper, </p>
+              <p className="nickname-item">{this.props.nickName}</p>
+              {/* <input
                 type="text"
                 name="nickname-input"
                 className="nickname-input"
                 defaultValue={this.props.nickName}
-              />
-              <p>memo</p>
+              /> */}
               <input
                 type="text"
                 name="memo"
