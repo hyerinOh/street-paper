@@ -4,11 +4,9 @@ import axios from 'axios';
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
+
     this.state = {
-      memo: '',
-      lat: null,
-      lon: null
+      memo: ''
     };
   }
 
@@ -19,8 +17,8 @@ export default class Dashboard extends Component {
   }
 
   onSubmit(ev) {
-    // ev.preventDefault();
-    console.log(this.props)
+    ev.preventDefault();
+
     axios.post('/papers/new', {
       nickname: this.props.nickName,
       memo: this.state.memo,
@@ -28,7 +26,6 @@ export default class Dashboard extends Component {
       lon: this.props.currCoords[0].lon
     })
       .then((response) => {
-        console.log('rrrrrrrr', response);
         alert('save!');
         this.props.handleClose();
       })
@@ -36,12 +33,6 @@ export default class Dashboard extends Component {
         console.log(error);
       });
   }
-
-  // validateLength(ev) {
-  //   if (ev.target.value.length > 10) {
-  //     alert('Write memo within 10 letters!');
-  //   }
-  // }
 
   render() {
     return (

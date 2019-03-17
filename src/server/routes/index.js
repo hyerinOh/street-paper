@@ -3,29 +3,6 @@ const Paper = require('../models/data');
 
 const router = express.Router();
 
-// router.get('/papers/location', async (req, res, next) => {
-//   try {
-//     const PapersByLocation = await Paper.find(
-//       {
-//         loc:
-//         {
-//           $near:
-//           {
-//             $geometry: {
-//               type: 'Point',
-//               coordinates: [Number(req.query.lon), Number(req.query.lat)]
-//             },
-//             $maxDistance: 0
-//           }
-//         }
-//       }
-//     );
-//     res.json(PapersByLocation);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.post('/papers/new', async (req, res, next) => {
   try {
     const paperList = {
