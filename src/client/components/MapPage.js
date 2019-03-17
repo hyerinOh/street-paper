@@ -10,7 +10,7 @@ ReactMapGL.accessToken = 'pk.eyJ1IjoiaHllbmluaWlpIiwiYSI6ImNqcWtubmw2dTZvM2Q0MnV
 export default class Map extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
+
     this.state = {
       viewport: {
         width: 640,
@@ -31,13 +31,24 @@ export default class Map extends Component {
   componentDidMount() {
     const { currCoords, allPapers } = this.state;
     const { onLoadData } = this.props;
-    // 로딩
+
     onLoadData(true);
 
     new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        resolve(position);
-        // 로딩 끝
+      // navigator.geolocation.getCurrentPosition((position) => {
+      //   resolve(position);
+      // });
+      resolve({
+        coords: {
+          accuracy: 20,
+          altitude: null,
+          altitudeAccuracy: null,
+          heading: null,
+          latitude: 37.5032999,
+          longitude: 127.02209020000001,
+          speed: null
+        },
+        timestamp: 1552801578160
       });
     }).then((positionData) => {
       if (positionData) {
@@ -52,6 +63,7 @@ export default class Map extends Component {
           .then((response) => {
             copiedPapers.push(response);
             onLoadData(false);
+
             this.setState((prevState) => {
               return {
                 ...prevState,
@@ -116,7 +128,6 @@ export default class Map extends Component {
   }
 
   displayLists(lat, lon) {
-    console.log(lat)
     this.setState({
       isDisplayModalOpen: true,
       targetLat: lat,
@@ -138,6 +149,7 @@ export default class Map extends Component {
       markers = allPapers[0].data.map((paper) => {
         const paperLat = paper.loc.coordinates[1];
         const paperLon = paper.loc.coordinates[0];
+
         return (
           <Marker
             key={paper._id}
@@ -156,14 +168,12 @@ export default class Map extends Component {
         );
       });
     }
-    console.log(this.props.isLoading);
-
     return (
       <div>
         {
           this.props.isLoading
-          ? <Loading />
-          : null
+            ? <Loading />
+            : null
         }
         {
           <div>
