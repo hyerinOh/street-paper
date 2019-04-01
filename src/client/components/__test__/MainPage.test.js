@@ -9,11 +9,3 @@ const actualNode = shallow(<MainPage />)
 
 actualNode.find('.startBtn').simulate('click');
 
-// describe('submit', () => {
-//   it('should call', () => {
-//     const a = jest.fn();
-//     const b = enzymeWrapper.find('.startBtn');
-//     b.simulate('click');
-//     a.to
-//   })
-// })

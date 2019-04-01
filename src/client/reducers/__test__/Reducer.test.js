@@ -7,7 +7,6 @@ describe('nick name reducer', () => {
   });
 
   it('should handle SET_NICK_NAME', () => {
-    console.log(Action.SET_NICK_NAME)
     expect(
       Reducer({}, {
         type: Action.SET_NICK_NAME,

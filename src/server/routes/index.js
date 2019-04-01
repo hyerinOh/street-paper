@@ -19,7 +19,7 @@ router.post('/papers/new', async (req, res, next) => {
     try {
       const savePapers = await paper.save();
       console.log(savePapers);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
     res.status(200).json({ message: 'success' });
@@ -29,9 +29,7 @@ router.post('/papers/new', async (req, res, next) => {
 });
 
 router.get('/papers', async (req, res, next) => {
-  console.log(req.query)
   try {
-    console.log(1111);
     const orderedByShortDistance = await Paper.find(
       {
         loc: {

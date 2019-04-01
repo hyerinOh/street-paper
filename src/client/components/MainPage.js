@@ -20,7 +20,6 @@ export default class MainPage extends Component {
     const { nickName, history, saveNickName } = this.props;
 
     ev.preventDefault();
-
     if (nickName.length > 0 && nickName.length <= 8) {
       history.push('/map');
     } else if (nickName.length === 0) {
@@ -33,37 +32,38 @@ export default class MainPage extends Component {
 
   render() {
     const { nickName } = this.props;
+
     return (
       <div className="main_Wrap">
-      <div className="main_page">
-        <div className="main_page_wrapper">
-          <img
-            src={logo}
-            className="logo"
-            alt="mainLogo"
-            style={{ width: '250px' }}
-          />
-          <div className="nickname_wrapper">
-            <div className="nickname_box_wrap">
-              <input
-                type="text"
-                name="nickname"
-                className="nickname_box"
-                placeholder="Write your nickname!"
-                value={nickName}
-                onChange={this.handleChange}
-              />
-              <span />
-            </div>
-            <button
-              type="submit"
-              value="Submit"
-              className="startBtn"
-              onClick={this.handleSubmit}
+        <div className="main_page">
+          <div className="main_page_wrapper">
+            <img
+              src={logo}
+              className="logo"
+              alt="mainLogo"
+              style={{ width: '250px' }}
             />
+            <div className="nickname_wrapper">
+              <div className="nickname_box_wrap">
+                <input
+                  type="text"
+                  name="nickname"
+                  className="nickname_box"
+                  placeholder="Write your nickname!"
+                  value={nickName}
+                  onChange={this.handleChange}
+                />
+                <span />
+              </div>
+              <button
+                type="submit"
+                value="Submit"
+                className="startBtn"
+                onClick={this.handleSubmit}
+              />
+            </div>
           </div>
         </div>
-      </div>
       </div>
     );
   }

@@ -3,7 +3,6 @@ import {
   BrowserRouter as
   Router,
   Route,
-  Redirect,
   Switch
 } from 'react-router-dom';
 import '../App.less';
@@ -17,6 +16,7 @@ export default class AppForm extends Component {
   constructor(props){
     super(props);
   }
+
   render() {
     return (
       <Router>
@@ -35,5 +35,4 @@ export default class AppForm extends Component {
       </Router>
     );
   }
-  
 }

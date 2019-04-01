@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 export default class DisplayListsModal extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   render() {
+    const {
+      handleListModal, allPapers, targetLat, targetLon
+    } = this.props;
     return (
       <div>
         <div className="modal display-block">
@@ -15,19 +16,19 @@ export default class DisplayListsModal extends Component {
             <button
               type="button"
               className="closeBtn"
-              onClick={this.props.handleListModal}
+              onClick={handleListModal}
             >
               x
             </button>
             <div>
               {
-                this.props.allPapers[0].data.map((paper) => {
+                allPapers[0].data.map((paper) => {
                   if (
-                    this.props.targetLat === paper.loc.coordinates[0]
-                  && this.props.targetLon === paper.loc.coordinates[1]
+                    targetLat === paper.loc.coordinates[0]
+                  && targetLon === paper.loc.coordinates[1]
                   ) {
                     return (
-                      <div>
+                      <div className="paper-list">
                         <p className="list-date">{paper.createdAt}</p>
                         <p>{paper.nickname}</p>
                         <p>{paper.memo}</p>

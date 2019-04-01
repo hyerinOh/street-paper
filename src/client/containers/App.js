@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import '../App.less';
 import { connect } from 'react-redux';
-import { BrowserRouter as Route, Link } from 'react-router-dom';
 import { Action, LoadingAction } from '../actions/action';
 import AppForm from '../components/AppForm';
 
 class App extends Component {
   render() {
-    return <AppForm {...this.props} />
+    return <AppForm {...this.props} />;
   }
 }
 

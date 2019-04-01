@@ -17,17 +17,19 @@ export default class Dashboard extends Component {
   }
 
   onSubmit(ev) {
+    const { nickName, currCoords, handleClose } = this.props;
+    const { memo } = this.state;
     ev.preventDefault();
 
     axios.post('/papers/new', {
-      nickname: this.props.nickName,
-      memo: this.state.memo,
-      lat: this.props.currCoords[0].lat,
-      lon: this.props.currCoords[0].lon
+      nickname: nickName,
+      memo,
+      lat: currCoords[0].lat,
+      lon: currCoords[0].lon
     })
-      .then((response) => {
+      .then(() => {
         alert('save!');
-        this.props.handleClose();
+        handleClose();
       })
       .catch((error) => {
         console.log(error);
@@ -35,6 +37,9 @@ export default class Dashboard extends Component {
   }
 
   render() {
+    const { handleClose, nickName } = this.props;
+    const { memo } = this.state;
+
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
         <div className="modal display-block">
@@ -42,26 +47,19 @@ export default class Dashboard extends Component {
             <button
               type="button"
               className="closeBtn"
-              onClick={this.props.handleClose}
+              onClick={handleClose}
             >
             x
             </button>
-
             <div className="nickname-form">
-              <p>Make Your Paper, </p>
-              <p className="nickname-item">{this.props.nickName}</p>
-              {/* <input
-                type="text"
-                name="nickname-input"
-                className="nickname-input"
-                defaultValue={this.props.nickName}
-              /> */}
+              <p className="nickname-title">Make Your Paper, </p>
+              <p className="nickname-item">"{nickName}"</p>
               <input
                 type="text"
                 name="memo"
                 className="memo-form"
                 placeholder="What's on your mind?"
-                value={this.state.memo}
+                value={memo}
                 onChange={this.onChange.bind(this)}
               />
             </div>
@@ -71,7 +69,7 @@ export default class Dashboard extends Component {
                 value="Submit"
                 className="saveBtn"
               >
-                save
+              save
               </button>
             </div>
           </div>

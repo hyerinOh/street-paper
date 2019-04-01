@@ -35,6 +35,7 @@ export default class Map extends Component {
     onLoadData(true);
 
     new Promise((resolve, reject) => {
+      // 현재위치 => https 사용시 가능
       // navigator.geolocation.getCurrentPosition((position) => {
       //   resolve(position);
       // });
@@ -55,6 +56,7 @@ export default class Map extends Component {
         const coordsObj = {};
         const copiedcurrCoords = [...currCoords];
         const copiedPapers = [...allPapers];
+
         coordsObj.lat = positionData.coords.latitude;
         coordsObj.lon = positionData.coords.longitude;
         copiedcurrCoords.push(coordsObj);
@@ -142,7 +144,10 @@ export default class Map extends Component {
   }
 
   render() {
-    const { viewport, currCoords, allPapers } = this.state;
+    const {
+      viewport, currCoords, allPapers, isModalOpen, isDisplayModalOpen
+    } = this.state;
+    const { isLoading } = this.props;
     let markers = null;
 
     if (allPapers.length) {
@@ -171,7 +176,7 @@ export default class Map extends Component {
     return (
       <div>
         {
-          this.props.isLoading
+          isLoading
             ? <Loading />
             : null
         }
@@ -210,13 +215,23 @@ export default class Map extends Component {
           </div>
         }
         {
-          this.state.isModalOpen
-            ? <CreateModal {...this.props} currCoords={this.state.currCoords} handleClose={this.handleClose.bind(this)} />
+          isModalOpen
+            ? <CreateModal
+              {...this.props} 
+              currCoords={this.state.currCoords} 
+              handleClose={this.handleClose.bind(this)} 
+              />
             : null
         }
         {
-          this.state.isDisplayModalOpen
-            ? <DisplayListsModal {...this.props} targetLat={this.state.targetLat} targetLon={this.state.targetLon} allPapers={this.state.allPapers} handleListModal={this.handleListModal.bind(this)} />
+          isDisplayModalOpen
+            ? <DisplayListsModal
+              {...this.props} 
+              targetLat={this.state.targetLat}
+              targetLon={this.state.targetLon}
+              allPapers={this.state.allPapers}
+              handleListModal={this.handleListModal.bind(this)} 
+            />
             : null
         }
       </div>
