@@ -1,12 +1,9 @@
 # Street Paper
 # Introduction
 
-**Street Paper**는 사용자가 닉네임을 입력하여 자신의 현재 위치에 간단한 쪽지를 남길 수 있고, 다른 사람들이 익명으로 남긴 쪽지들도 볼 수 있는 서비스입니다.
+**Street Paper**는 길을 가던 중 자신의 흔적을 남기고싶거나, 특정 장소에 문구를 남기고 싶을 때 사용자가 닉네임을 입력하여 자신의 현재 위치에 간단한 쪽지를 남길 수 있고, 다른 사람들이 익명으로 남긴 쪽지들도 볼 수 있는 서비스입니다.
 
 <img width="200" src="https://user-images.githubusercontent.com/38285577/55359701-6d685280-550d-11e9-9e9d-3d5478e5a474.png">
-
-## Requirements
-- Chrome Browser를 권장합니다.
 
 ## Prerequisites
 - Node.js 설치
@@ -28,6 +25,8 @@ npm run dev
 - Babel을 통한 모던 자바스크립트 (ES2015+)
 - React를 사용한 컴포넌트 베이스 UI 아키텍처 구현
 - Redux 라이브러리를 사용한 state 관리
+
+## Server
 - 자바스크립트 엔진(V8 engine)기반의 서버사이드 플랫폼 Node.js
 - 서버사이드에서는 Node.js가 권장하는 ES2015+
 - Node.js 웹 어플리케이션 프레임워크 Express
@@ -39,14 +38,14 @@ npm run dev
 - 자바스크립트 테스트 프레임워크 Jest, Enzyme
 
 ## Deployment
-### Client
-- Netlify
+### Server
+-  AWS Elastic Beanstalk
 
 ## Version control
 - Branch, Pull Request 기반 개발 진행
 
 ## Images
-### Nickname Page
+### Sign In Page
 <img width="200" src="https://user-images.githubusercontent.com/38285577/55359701-6d685280-550d-11e9-9e9d-3d5478e5a474.png">
 
 ### Map page
