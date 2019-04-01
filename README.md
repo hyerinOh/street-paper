@@ -49,7 +49,7 @@ npm run dev
 <img width="200" src="https://user-images.githubusercontent.com/38285577/55359701-6d685280-550d-11e9-9e9d-3d5478e5a474.png">
 
 ### Map page
-<img width="200" src="https://user-images.githubusercontent.com/38285577/55359883-e7004080-550d-11e9-924f-b406d46ca417.png">
+<img width="200" src="https://user-images.githubusercontent.com/38285577/55362243-5f6a0000-5514-11e9-9f27-6c57f688c847.png">
 
 ### Creating a new paper
 <img width="200" src="https://user-images.githubusercontent.com/38285577/55360249-c2f12f00-550e-11e9-942d-08d0c244ca5b.png">
