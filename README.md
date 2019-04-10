@@ -1,4 +1,4 @@
-# Street Paper
+# Street Paper (mobile web)
 # Introduction
 
 **Street Paper**는 길을 가던 중 자신의 흔적을 남기고싶거나, 특정 장소에 문구를 남기고 싶을 때 사용자가 닉네임을 이용하여 익명으로 자신의 현재 위치에 간단한 쪽지를 남길 수 있고, 다른 사람들이 남긴 쪽지들도 볼 수 있는 서비스입니다.
